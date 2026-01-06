@@ -18,38 +18,12 @@
             flex-direction: column;
         }
 
-        /* 1. INTRO ANIMATION LAYER */
-        .intro-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: black;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            animation: fadeOut 2.5s forwards;
-            animation-delay: 3s; /* Wait 3 seconds before fading out */
-            pointer-events: none; /* Let clicks pass through after */
-        }
-
-        .intro-logo {
-            color: #e50914;
-            font-size: 80px;
-            font-weight: bold;
-            opacity: 0;
-            transform: scale(0.1);
-            animation: popIn 3s ease-out forwards;
-        }
-
-        /* 2. PROFILE SELECTOR */
+        /* 1. PROFILE SELECTOR */
         .profile-container {
             text-align: center;
-            opacity: 0; /* Hidden initially, shown after animation */
-            animation: fadeIn 1s forwards;
-            animation-delay: 3.5s; /* Starts after intro finishes */
+            /* Simple fade in when page loads */
+            animation: fadeIn 1.5s forwards; 
+            opacity: 0;
         }
 
         h1 {
@@ -69,7 +43,6 @@
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            group: hover;
         }
 
         .avatar {
@@ -81,11 +54,10 @@
             max-height: 200px;
             border-radius: 4px;
             background-size: cover;
-            border: 3px solid transparent; /* Invisible border */
+            border: 3px solid transparent; 
             transition: 0.3s;
         }
 
-        /* Hover effect: White border like Netflix */
         .profile-box:hover .avatar {
             border-color: white;
         }
@@ -100,7 +72,6 @@
             color: white;
         }
 
-        /* Manage Button */
         .manage-btn {
             background-color: transparent;
             border: 1px solid grey;
@@ -117,20 +88,10 @@
             border-color: white;
         }
 
-        /* KEYFRAMES */
-        @keyframes popIn {
-            0% { transform: scale(0.1); opacity: 0; }
-            50% { transform: scale(1.5); opacity: 1; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeOut {
-            to { opacity: 0; z-index: -1; }
-        }
         @keyframes fadeIn {
             to { opacity: 1; }
         }
 
-        /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .profile-name { font-size: 1rem; }
@@ -141,9 +102,9 @@
 </head>
 <body>
 
-    <div class="intro-animation">
-        <div class="intro-logo">N</div>
-    </div>
+    <audio id="introAudio" autoplay>
+        <source src="assets/netflix-intro.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="profile-container">
         <h1>Who's watching?</h1>
@@ -169,19 +130,19 @@
     </div>
 
     <script>
+        // Try to play audio immediately. 
+        // Note: Some browsers block auto-play until the user clicks somewhere.
+        window.onload = function() {
+            var audio = document.getElementById("introAudio");
+            audio.volume = 0.5; // Set volume to 50%
+            audio.play().catch(function(error) {
+                console.log("Audio autoplay blocked by browser: " + error);
+            });
+        };
+
         function selectProfile(avatarUrl) {
-            // 1. Save the chosen avatar to the browser's memory
             localStorage.setItem('loveFlixAvatar', avatarUrl);
-
-             //2. Play the "Ta-dum" sound (Optional)
-             //If you have the sound file, uncomment the lines below:
-             var audio = new Audio('assets/netflix-intro.mp3');
-             audio.play();
-
-            // 3. Redirect to the Home Page
-            setTimeout(() => {
-                window.location.href = "index.html";
-            }, 500); // Small delay to let user see the click
+            window.location.href = "index.html";
         }
     </script>
 
