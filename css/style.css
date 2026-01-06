@@ -181,7 +181,7 @@ body {
 
 .row-poster {
     /* FORCE 9:16 ASPECT RATIO */
-    aspect-ratio: 9 / 16;
+    aspect-ratio: 2 / 3;
     
     /* Set a fixed height, width calculates automatically */
     height: 280px;  
