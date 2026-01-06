@@ -92,3 +92,14 @@ playButton.addEventListener('click', () => {
 infoButton.addEventListener('click', () => {
     alert("This is the story of our first year together. Created with love.");
 });
+/* 5. AVATAR CHECKER
+   This looks at localStorage to see who logged in and updates the top-right icon.
+*/
+const userAvatar = document.querySelector('.nav-avatar');
+const savedAvatar = localStorage.getItem('loveFlixAvatar');
+
+if (savedAvatar) {
+    // If we found a saved avatar, update the image source
+    userAvatar.src = savedAvatar;
+}
+// If not found, it keeps the default "avatar.png" you set in HTML
