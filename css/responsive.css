@@ -1,0 +1,87 @@
+/* Mobile Breakpoint (Phones and small tablets) */
+@media (max-width: 768px) {
+
+    /* 1. Navigation Adjustments */
+    .nav {
+        padding: 10px 15px; /* Less padding on sides */
+        height: 50px;
+    }
+
+    .nav-logo {
+        width: 60px; /* Smaller logo */
+        margin-right: 10px;
+    }
+
+    .nav-avatar {
+        width: 25px;
+        margin-left: 10px;
+    }
+
+    /* Hide the text links (Home, Our Story) on mobile to save space */
+    /* Only show the logo and avatar */
+    .nav-links {
+        display: none; 
+    }
+
+    /* 2. Hero Banner Adjustments */
+    .banner {
+        /* Make banner shorter on phone so we can see the rows below */
+        height: 60vh; 
+        background-position: center center;
+    }
+
+    .banner-contents {
+        padding-top: 100px; /* Move text up */
+        margin-left: 15px; /* Less left margin */
+        height: auto;
+    }
+
+    .banner-title {
+        font-size: 1.8rem; /* Make title smaller (was 3rem) */
+        padding-bottom: 0.5rem;
+    }
+
+    .banner-description {
+        font-size: 0.8rem;
+        width: auto;
+        max-width: 300px; /* Prevent text going off screen */
+        height: auto;
+        margin-bottom: 15px;
+        /* Optional: limit description to 3 lines */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .banner-button {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        font-size: 0.8rem;
+    }
+
+    /* 3. Row Adjustments */
+    .row h2 {
+        font-size: 1rem; /* Smaller category titles */
+    }
+
+    .row-poster {
+        max-height: 100px; /* Keep posters reasonable size */
+    }
+
+    .row-posterLarge {
+        max-height: 200px; /* Slightly smaller large posters */
+    }
+
+    /* 4. Footer Adjustments */
+    .footer {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .footer-cols {
+        /* Switch from 3 columns to 1 column on mobile */
+        grid-template-columns: 1fr; 
+        text-align: center;
+    }
+}
