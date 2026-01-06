@@ -1,3 +1,10 @@
+/* 0. THE GATEKEEPER
+   If the user hasn't chosen a profile yet, send them to the profile page.
+*/
+if (!localStorage.getItem('loveFlixAvatar')) {
+    window.location.href = "profiles.html";
+}
+
 /* 1. NAVBAR SCROLL EFFECT
    Changes the navbar from transparent to black when you scroll down.
 */
