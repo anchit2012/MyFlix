@@ -99,14 +99,22 @@ playButton.addEventListener('click', () => {
 infoButton.addEventListener('click', () => {
     alert("This is the story of our first year together. Created with love.");
 });
-/* 5. AVATAR CHECKER
-   This looks at localStorage to see who logged in and updates the top-right icon.
+/* 5. AVATAR CHECKER & LOGOUT
+   Updates the avatar image and handles the logout click.
 */
 const userAvatar = document.querySelector('.nav-avatar');
 const savedAvatar = localStorage.getItem('loveFlixAvatar');
 
+// Update the image if we have a saved one
 if (savedAvatar) {
-    // If we found a saved avatar, update the image source
     userAvatar.src = savedAvatar;
 }
-// If not found, it keeps the default "avatar.png" you set in HTML
+
+// LOGOUT LOGIC: Clicking the avatar takes you back to profiles
+userAvatar.addEventListener('click', () => {
+    // 1. Clear the saved profile from memory
+    localStorage.removeItem('loveFlixAvatar');
+    
+    // 2. Redirect back to the profile selection screen
+    window.location.href = "profiles.html";
+});
