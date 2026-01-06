@@ -18,10 +18,8 @@
             flex-direction: column;
         }
 
-        /* 1. PROFILE SELECTOR */
         .profile-container {
             text-align: center;
-            /* Simple fade in when page loads */
             animation: fadeIn 1.5s forwards; 
             opacity: 0;
         }
@@ -102,7 +100,7 @@
 </head>
 <body>
 
-    <audio id="introAudio" autoplay>
+    <audio id="introAudio">
         <source src="assets/netflix-intro.mp3" type="audio/mpeg">
     </audio>
 
@@ -120,7 +118,7 @@
                 <span class="profile-name">Her</span>
             </div>
 
-            <div class="profile-box" onclick="alert('Locked until 2030 😉')">
+            <div class="profile-box" onclick="playFutureSound()">
                 <img src="assets/images/kids-avatar.png" class="avatar" alt="Kids">
                 <span class="profile-name">Future</span>
             </div>
@@ -130,19 +128,26 @@
     </div>
 
     <script>
-        // Try to play audio immediately. 
-        // Note: Some browsers block auto-play until the user clicks somewhere.
-        window.onload = function() {
-            var audio = document.getElementById("introAudio");
-            audio.volume = 0.5; // Set volume to 50%
-            audio.play().catch(function(error) {
-                console.log("Audio autoplay blocked by browser: " + error);
-            });
-        };
-
+        // Function for Him/Her
         function selectProfile(avatarUrl) {
+            // 1. Play the sound
+            var audio = document.getElementById("introAudio");
+            audio.play();
+
+            // 2. Save the login info
             localStorage.setItem('loveFlixAvatar', avatarUrl);
-            window.location.href = "index.html";
+
+            // 3. Wait 2 seconds (2000ms) for sound to play, THEN go to home
+            setTimeout(function() {
+                window.location.href = "index.html";
+            }, 2000); 
+        }
+
+        // Function for Future
+        function playFutureSound() {
+            var audio = document.getElementById("introAudio");
+            audio.play();
+            alert('Locked until 2030 😉');
         }
     </script>
 
