@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoveFlix - Who's Watching?</title>
+    <style>
+        body {
+            background-color: #141414;
+            color: white;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        /* 1. INTRO ANIMATION LAYER */
+        .intro-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: fadeOut 2.5s forwards;
+            animation-delay: 3s; /* Wait 3 seconds before fading out */
+            pointer-events: none; /* Let clicks pass through after */
+        }
+
+        .intro-logo {
+            color: #e50914;
+            font-size: 80px;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0.1);
+            animation: popIn 3s ease-out forwards;
+        }
+
+        /* 2. PROFILE SELECTOR */
+        .profile-container {
+            text-align: center;
+            opacity: 0; /* Hidden initially, shown after animation */
+            animation: fadeIn 1s forwards;
+            animation-delay: 3.5s; /* Starts after intro finishes */
+        }
+
+        h1 {
+            font-size: 3.5vw;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .profiles {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .profile-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            group: hover;
+        }
+
+        .avatar {
+            width: 10vw;
+            height: 10vw;
+            min-width: 84px;
+            min-height: 84px;
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 4px;
+            background-size: cover;
+            border: 3px solid transparent; /* Invisible border */
+            transition: 0.3s;
+        }
+
+        /* Hover effect: White border like Netflix */
+        .profile-box:hover .avatar {
+            border-color: white;
+        }
+
+        .profile-name {
+            margin-top: 10px;
+            color: grey;
+            font-size: 1.3vw;
+        }
+
+        .profile-box:hover .profile-name {
+            color: white;
+        }
+
+        /* Manage Button */
+        .manage-btn {
+            background-color: transparent;
+            border: 1px solid grey;
+            color: grey;
+            padding: 10px 30px;
+            margin-top: 50px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-size: 1.2vw;
+        }
+
+        .manage-btn:hover {
+            color: white;
+            border-color: white;
+        }
+
+        /* KEYFRAMES */
+        @keyframes popIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; z-index: -1; }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            .profile-name { font-size: 1rem; }
+            .avatar { width: 100px; height: 100px; }
+            .manage-btn { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="intro-animation">
+        <div class="intro-logo">N</div>
+    </div>
+
+    <div class="profile-container">
+        <h1>Who's watching?</h1>
+        
+        <div class="profiles">
+            <div class="profile-box" onclick="selectProfile('assets/images/boy-avatar.png')">
+                <img src="assets/images/boy-avatar.png" class="avatar" alt="Him">
+                <span class="profile-name">Him</span>
+            </div>
+
+            <div class="profile-box" onclick="selectProfile('assets/images/girl-avatar.png')">
+                <img src="assets/images/girl-avatar.png" class="avatar" alt="Her">
+                <span class="profile-name">Her</span>
+            </div>
+
+            <div class="profile-box" onclick="alert('Locked until 2030 😉')">
+                <img src="assets/images/kids-avatar.png" class="avatar" alt="Kids">
+                <span class="profile-name">Future</span>
+            </div>
+        </div>
+
+        <button class="manage-btn">MANAGE PROFILES</button>
+    </div>
+
+    <script>
+        function selectProfile(avatarUrl) {
+            // 1. Save the chosen avatar to the browser's memory
+            localStorage.setItem('loveFlixAvatar', avatarUrl);
+
+            // 2. Play the "Ta-dum" sound (Optional)
+            // If you have the sound file, uncomment the lines below:
+            // var audio = new Audio('assets/netflix-intro.mp3');
+            // audio.play();
+
+            // 3. Redirect to the Home Page
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 500); // Small delay to let user see the click
+        }
+    </script>
+
+</body>
+</html>
