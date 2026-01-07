@@ -201,7 +201,7 @@ body {
 
 /* OPTIONAL: Make the "Originals" row even taller/bigger */
 .row-posterLarge {
-    height: 400px; /* Taller than the normal ones */
+    height: 300px; /* Taller than the normal ones */
     border-radius: 6px;
 }
 
