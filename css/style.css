@@ -184,7 +184,7 @@ body {
     aspect-ratio: 2 / 3;
     
     /* Set a fixed height, width calculates automatically */
-    height: 280px;  
+    height: 320px;  
     width: auto;    
 
     object-fit: cover; /* Ensures image fills the box perfectly */
