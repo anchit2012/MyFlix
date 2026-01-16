@@ -166,27 +166,33 @@ body {
 
 
 /* =========================================
-   5. MOBILE ADJUSTMENTS (THE FIX)
+   5. MOBILE ADJUSTMENTS (Strict Ratio Fix)
    ========================================= */
 @media screen and (max-width: 768px) {
 
-    /* Banner text fix */
-    .banner-title { font-size: 2rem; }
-    .banner-description { width: auto; max-width: 90%; }
-
-    /* MOBILE ROW 1: FORCE BIG SIZE (250px) */
-    .row-poster:not(.row-posterLarge) {
-        height: 250px !important;
-        width: auto !important;
-        min-width: 160px; /* Safety width */
+    /* 1. FORCE 2:3 RATIO ON EVERYTHING */
+    .row-poster, .row-posterLarge {
+        aspect-ratio: 2 / 3 !important;
+        object-fit: cover !important; /* Crops edges if needed, never stretches */
+        flex: 0 0 auto; /* PREVENTS SQUISHING/STRETCHING in the row */
     }
 
-    /* MOBILE ROW 2: FORCE SMALLER SIZE (180px) */
+    /* 2. Row 1 (Trending) - BIG SIZE */
+    .row-poster:not(.row-posterLarge) {
+        height: 250px !important;
+        width: auto !important; /* Width calculates automatically based on height */
+    }
+
+    /* 3. Row 2 (Favorites) - SMALLER SIZE */
     .row-posterLarge {
         height: 180px !important;
         width: auto !important;
-        min-width: 120px; /* Safety width */
     }
+
+    /* Adjust text size */
+    h2 { font-size: 1.2rem; }
+    .banner-title { font-size: 2rem; }
+    .banner-description { width: auto; max-width: 90%; }
 }
 
 /* 6. FOOTER */
