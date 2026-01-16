@@ -313,3 +313,60 @@ body {
         var(--background-black)
     );
 }
+/* =================================================
+   UI POLISH PACK (NON-DESTRUCTIVE)
+   Add this at the very bottom of your CSS file
+   ================================================= */
+
+/* 3. Slightly darken posters for cinematic feel */
+.row-poster,
+.row-posterLarge {
+    filter: brightness(0.95);
+}
+
+/* 4. Improve text rendering on dark background */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 5. Intentional cursor behavior */
+.row h2 {
+    cursor: default;
+}
+
+.row-poster,
+.row-posterLarge {
+    cursor: pointer;
+}
+
+/* 6. Premium hover motion (desktop only) */
+@media (hover: hover) {
+    .row-poster:hover,
+    .row-posterLarge:hover {
+        transform: translateY(-6px) scale(1.06);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        z-index: 10;
+    }
+}
+
+/* 7. Hide scrollbars everywhere */
+.row-posters {
+    scrollbar-width: none; /* Firefox */
+}
+
+/* 8. Better tap targets for banner buttons */
+.banner-button {
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* 9. Softer footer contrast */
+.footer {
+    opacity: 0.85;
+}
+
+/* 10. Smooth scrolling polish */
+* {
+    scroll-behavior: smooth;
+}
