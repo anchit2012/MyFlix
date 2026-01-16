@@ -157,9 +157,8 @@ body {
     width: 100%;
 }
 
-/* 4. ROWS & POSTERS */
 /* =========================================
-   4. ROWS & POSTERS (UPDATED FOR 9:16)
+   4. ROWS & POSTERS (Trending Big / Favorites Small)
    ========================================= */
 
 .row {
@@ -174,39 +173,40 @@ body {
     padding: 20px;
 }
 
-/* Hide scrollbar for clean look */
 .row-posters::-webkit-scrollbar {
     display: none;
 }
 
+/* 1. ROW 1: TRENDING (The Standard Class)
+   We make this one BIG per your request.
+*/
 .row-poster {
-    /* FORCE 9:16 ASPECT RATIO */
-    aspect-ratio: 2 / 3;
+    aspect-ratio: 9 / 16; /* Keep the 9:16 Vertical Story look */
+    height: 300px;        /* Big and Bold */
+    width: auto;
     
-    /* Set a fixed height, width calculates automatically */
-    height: 320px;  
-    width: auto;    
-
-    object-fit: cover; /* Ensures image fills the box perfectly */
-    margin-right: 15px; /* Space between posters */
+    object-fit: cover;
+    margin-right: 15px;
     border-radius: 4px;
     transition: transform 450ms;
     cursor: pointer;
 }
 
 .row-poster:hover {
-    transform: scale(1.08); /* Zoom effect */
+    transform: scale(1.08);
     opacity: 1;
 }
 
-/* OPTIONAL: Make the "Originals" row even taller/bigger */
+/* 2. ROW 2: FAVORITES (The 'Large' Class)
+   We are overriding this to be SMALLER now.
+*/
 .row-posterLarge {
-    height: 300px; /* Taller than the normal ones */
-    border-radius: 6px;
+    height: 180px; /* Much smaller than the trending row */
+    margin-right: 10px; /* Tighter spacing for small items */
 }
 
 .row-posterLarge:hover {
-    transform: scale(1.1);
+    transform: scale(1.15); /* Slightly bigger zoom for small items */
 }
 
 /* 5. FOOTER */
