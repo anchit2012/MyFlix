@@ -245,3 +245,71 @@ body {
 @media(min-width: 768px) {
     .footer-cols { grid-template-columns: repeat(4, 1fr); }
 }
+.row {
+    position: relative;
+}
+
+.row::before,
+.row::after {
+    content: "";
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    width: 60px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.row::before {
+    left: 0;
+    background: linear-gradient(to right, #111 0%, transparent 100%);
+}
+
+.row::after {
+    right: 0;
+    background: linear-gradient(to left, #111 0%, transparent 100%);
+}
+.row-posters {
+    scroll-snap-type: x mandatory;
+}
+
+.row-poster,
+.row-posterLarge {
+    scroll-snap-align: start;
+}
+.row:first-of-type h2 {
+    color: var(--netflix-red);
+    letter-spacing: 0.5px;
+}
+
+.row:first-of-type .row-poster {
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+}
+@media (hover: hover) {
+    .row-poster:hover,
+    .row-posterLarge:hover {
+        box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        z-index: 10;
+    }
+}
+.row h2 {
+    opacity: 0.9;
+}
+
+.row:first-of-type h2 {
+    opacity: 1;
+    font-weight: 700;
+}
+.banner::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--background-black)
+    );
+}
