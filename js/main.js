@@ -1,120 +1,102 @@
-/* 0. THE GATEKEEPER
-   If the user hasn't chosen a profile yet, send them to the profile page.
-*/
-if (!localStorage.getItem('loveFlixAvatar')) {
-    window.location.href = "profiles.html";
-}
+document.addEventListener('DOMContentLoaded', () => {
 
-/* 1. NAVBAR SCROLL EFFECT
-   Changes the navbar from transparent to black when you scroll down.
-*/
-const nav = document.getElementById('nav');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        nav.classList.add('nav-black');
-    } else {
-        nav.classList.remove('nav-black');
+    /* 0. THE GATEKEEPER */
+    if (!localStorage.getItem('loveFlixAvatar')) {
+        window.location.href = "profiles.html";
     }
-});
 
-
-/* 2. VIDEO CONFIGURATION
-   Paste your YouTube Video IDs here.
-   Order matters! The first ID corresponds to the first image in that row in your HTML.
-*/
-
-// The Big Banner Video (The "Play" button at the top)
-const mainHeroVideoId = "YOUR_MAIN_VIDEO_ID_HERE"; 
-
-// Row 1: Trending in Our Hearts (Standard landscape images)
-const trendingVideos = [
-    "VIDEO_ID_1", // Matches thumb1.jpg
-    "VIDEO_ID_2", // Matches thumb2.jpg
-    "VIDEO_ID_3", // Matches thumb3.jpg
-    "VIDEO_ID_4", // Matches thumb4.jpg
-    "VIDEO_ID_5", // Matches thumb5.jpg
-    "VIDEO_ID_6"  // Matches thumb6.jpg
-];
-
-// Row 2: Your Favorites / Originals (Large vertical images)
-const originalVideos = [
-    "VIDEO_ID_1", 
-    "VIDEO_ID_2", 
-    "VIDEO_ID_3", 
-    "VIDEO_ID_4", 
-    "VIDEO_ID_5"
-];
-
-// Row 3: Funniest Moments
-const funnyVideos = [
-    "VIDEO_ID_1", 
-    "VIDEO_ID_2", 
-    "VIDEO_ID_3", 
-    "VIDEO_ID_4", 
-    "VIDEO_ID_5"
-];
-
-
-/* 3. CLICK LOGIC
-   This attaches the click event to the images.
-*/
-
-// Function to attach clicks to a specific row
-function setupRow(rowIndex, videoList) {
-    // Get the specific row of posters from the HTML
-    const row = document.querySelectorAll('.row-posters')[rowIndex];
-    const images = row.querySelectorAll('.row-poster');
-
-    // Loop through the images and assign the video ID
-    images.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            // Check if we have a video ID for this image
-            if (videoList[index]) {
-                // Redirect to watch page with the ID
-                window.location.href = `watch.html?v=${videoList[index]}`;
-            } else {
-                alert("This video hasn't been uploaded yet!");
-            }
-        });
+    /* 1. NAVBAR SCROLL EFFECT */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            nav.classList.add('nav-black');
+        } else {
+            nav.classList.remove('nav-black');
+        }
     });
-}
 
-// Initialize the rows
-// Index 0 = First row in HTML, Index 1 = Second row, etc.
-setupRow(0, trendingVideos);
-setupRow(1, originalVideos);
-setupRow(2, funnyVideos);
+    /* 2. VIDEO CONFIGURATION */
+    // The Big Banner Video
+    const mainHeroVideoId = "YOUR_MAIN_VIDEO_ID_HERE"; 
 
+    // Row 1: Trending
+    const trendingVideos = [
+        "VIDEO_ID_1", 
+        "VIDEO_ID_2", 
+        "VIDEO_ID_3", 
+        "VIDEO_ID_4", 
+        "VIDEO_ID_5", 
+        "VIDEO_ID_6"
+    ];
 
-/* 4. HERO BUTTON LOGIC
-*/
-const playButton = document.querySelector('.play-btn');
-const infoButton = document.querySelector('.info-btn');
+    // Row 2: Favorites (Originals)
+    const originalVideos = [
+        "VIDEO_ID_1", 
+        "VIDEO_ID_2", 
+        "VIDEO_ID_3", 
+        "VIDEO_ID_4", 
+        "VIDEO_ID_5"
+    ];
 
-playButton.addEventListener('click', () => {
-    window.location.href = `watch.html?v=${mainHeroVideoId}`;
-});
+    /* 3. CLICK LOGIC */
+    function setupRow(rowIndex, videoList) {
+        const rows = document.querySelectorAll('.row-posters');
+        
+        // SAFETY CHECK: Does this row actually exist in the HTML?
+        if (rows[rowIndex]) {
+            const row = rows[rowIndex];
+            const images = row.querySelectorAll('.row-poster');
 
-infoButton.addEventListener('click', () => {
-    alert("This is the story of our first year together. Created with love.");
-});
-/* 5. AVATAR CHECKER & LOGOUT
-   Updates the avatar image and handles the logout click.
-*/
-const userAvatar = document.querySelector('.nav-avatar');
-const savedAvatar = localStorage.getItem('loveFlixAvatar');
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    if (videoList[index]) {
+                        window.location.href = `watch.html?v=${videoList[index]}`;
+                    } else {
+                        alert("This video hasn't been uploaded yet!");
+                    }
+                });
+            });
+        }
+    }
 
-// Update the image if we have a saved one
-if (savedAvatar) {
-    userAvatar.src = savedAvatar;
-}
+    // Initialize the rows (ONLY 0 and 1 now)
+    setupRow(0, trendingVideos);
+    setupRow(1, originalVideos);
+    // REMOVED setupRow(2) because you deleted that row
 
-// LOGOUT LOGIC: Clicking the avatar takes you back to profiles
-userAvatar.addEventListener('click', () => {
-    // 1. Clear the saved profile from memory
-    localStorage.removeItem('loveFlixAvatar');
-    
-    // 2. Redirect back to the profile selection screen
-    window.location.href = "profiles.html";
+    /* 4. HERO BUTTON LOGIC */
+    const playButton = document.querySelector('.play-btn');
+    const infoButton = document.querySelector('.info-btn');
+
+    if (playButton) {
+        playButton.addEventListener('click', () => {
+            window.location.href = `watch.html?v=${mainHeroVideoId}`;
+        });
+    }
+
+    if (infoButton) {
+        infoButton.addEventListener('click', () => {
+            alert("This is the story of our first year together. Created with love.");
+        });
+    }
+
+    /* 5. AVATAR CHECKER & LOGOUT */
+    const userAvatar = document.querySelector('.nav-avatar');
+    const savedAvatar = localStorage.getItem('loveFlixAvatar');
+
+    if (userAvatar) {
+        // Update image if saved
+        if (savedAvatar) {
+            userAvatar.src = savedAvatar;
+        }
+
+        // Logout Logic
+        userAvatar.addEventListener('click', () => {
+            localStorage.removeItem('loveFlixAvatar');
+            window.location.href = "profiles.html";
+        });
+        
+        // Make sure it looks clickable
+        userAvatar.style.cursor = "pointer";
+    }
 });
