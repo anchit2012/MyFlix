@@ -193,6 +193,25 @@ body {
         transform: none;
     }
 }
+/* =========================================
+   FINAL TRENDING SIZE FIX (DO NOT MOVE)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    /* FORCE TRENDING TO DOMINATE */
+    .row-poster {
+        aspect-ratio: auto !important;
+        height: 280px !important;
+        min-height: 280px;
+    }
+
+    /* KEEP ROW 2 COMPACT */
+    .row-posterLarge {
+        aspect-ratio: 2 / 3 !important;
+        height: 180px !important;
+        max-height: 180px;
+    }
+}
 
 /* 6. FOOTER */
 .footer {
