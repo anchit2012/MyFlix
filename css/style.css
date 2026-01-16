@@ -139,62 +139,60 @@ body {
 
 .row-posters::-webkit-scrollbar { display: none; }
 
-/* SHARED STYLES FOR ALL POSTERS */
+/* 1. ROW 1: TRENDING (The Standard Class) -> BIGGEST */
 .row-poster {
+    /* FORCE 2:3 Vertical Ratio */
     aspect-ratio: 2 / 3;
+    
+    /* SIZE: 320px (Big and Clear) */
+    height: 320px;
+    width: auto;
+    
     object-fit: cover;
     margin-right: 15px;
     border-radius: 4px;
     transition: transform 450ms;
     cursor: pointer;
+    flex: 0 0 auto; /* Stop them from squishing */
 }
 
 .row-poster:hover { transform: scale(1.08); }
 
-/* SPECIFIC SIZE: ROW 1 (Trending) */
-/* This says: "Any poster that DOES NOT have the 'large' tag" */
-.row-poster:not(.row-posterLarge) {
-    height: 300px;
+/* 2. ROW 2: FAVORITES (The 'Large' Class) -> SMALLER */
+/* We use !important here to override the rule above */
+.row-posterLarge {
+    height: 220px !important; /* Clearly smaller than 320px */
     width: auto;
 }
 
-/* SPECIFIC SIZE: ROW 2 (Favorites) */
-.row-posterLarge {
-    height: 250px;
-    width: auto;
+.row-posterLarge:hover {
+    transform: scale(1.1); 
 }
 
 
 /* =========================================
-   5. MOBILE ADJUSTMENTS (Strict Ratio Fix)
+   5. MOBILE ADJUSTMENTS
    ========================================= */
 @media screen and (max-width: 768px) {
 
-    /* 1. FORCE 2:3 RATIO ON EVERYTHING */
-    .row-poster, .row-posterLarge {
-        aspect-ratio: 2 / 3 !important;
-        object-fit: cover !important; /* Crops edges if needed, never stretches */
-        flex: 0 0 auto; /* PREVENTS SQUISHING/STRETCHING in the row */
+    /* MOBILE ROW 1 (Standard): BIG */
+    .row-poster {
+        height: 280px !important; /* Very tall on phone */
+        width: auto !important;
+        margin-right: 10px;
     }
 
-    /* 2. Row 1 (Trending) - BIG SIZE */
-    .row-poster:not(.row-posterLarge) {
-        height: 250px !important;
-        width: auto !important; /* Width calculates automatically based on height */
-    }
-
-    /* 3. Row 2 (Favorites) - SMALLER SIZE */
+    /* MOBILE ROW 2 (Large): SMALL */
     .row-posterLarge {
-        height: 180px !important;
+        height: 180px !important; /* Much smaller */
         width: auto !important;
     }
 
-    /* Adjust text size */
+    /* General Fixes */
     h2 { font-size: 1.2rem; }
     .banner-title { font-size: 2rem; }
-    .banner-description { width: auto; max-width: 90%; }
+    .banner-description { display: none; } /* Hide description on phone to save space */
 }
-
 /* 6. FOOTER */
 .footer {
     padding: 20px;
