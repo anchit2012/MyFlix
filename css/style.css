@@ -181,7 +181,7 @@ body {
    We make this one BIG per your request.
 */
 .row-poster {
-    aspect-ratio: 9 / 16; /* Keep the 9:16 Vertical Story look */
+    aspect-ratio: 2 / 3; /* Keep the 9:16 Vertical Story look */
     height: 300px;        /* Big and Bold */
     width: auto;
     
