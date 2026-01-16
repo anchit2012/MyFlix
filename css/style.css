@@ -202,11 +202,11 @@ body {
 */
 .row-posterLarge {
     /* YOUR REQUESTED SIZE: 220px */
-    height: 220px; 
+    height: 300px; 
 }
 
 .row-posterLarge:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 /* 2. ROW 2: FAVORITES (The 'Large' Class)
    We are overriding this to be SMALLER now.
