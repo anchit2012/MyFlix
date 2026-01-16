@@ -208,27 +208,33 @@ body {
 }
 
 /* =========================================
-   5. MOBILE ADJUSTMENTS
+   5. MOBILE ADJUSTMENTS (Bulletproof Version)
    ========================================= */
 @media screen and (max-width: 768px) {
     
-    /* Force Row 1 (Trending) to be big on phone */
+    /* 1. Target ALL posters first (Row 1 will use this) */
     .row-poster {
         height: 250px !important; 
+        width: auto !important;
         margin-right: 10px;
     }
 
-    /* Force Row 2 (Favorites) to be smaller on phone */
-    .row-posterLarge {
+    /* 2. Target ONLY the 'Large' posters (Row 2) */
+    /* By chaining .row-poster.row-posterLarge, this rule becomes stronger */
+    img.row-poster.row-posterLarge {
         height: 180px !important; 
+        width: auto !important;
     }
     
-    /* Optional: Adjust text size so headers fit better */
+    /* Adjust text size */
     h2 {
         font-size: 1.2rem;
     }
+    
+    .banner-title {
+        font-size: 2rem;
+    }
 }
-
 /* 5. FOOTER */
 .footer {
     padding: 20px;
