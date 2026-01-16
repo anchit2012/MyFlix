@@ -201,7 +201,7 @@ body {
    We are overriding this to be SMALLER now.
 */
 .row-posterLarge {
-    height: 180px; /* Much smaller than the trending row */
+    height: 220px; /* Much smaller than the trending row */
     margin-right: 10px; /* Tighter spacing for small items */
 }
 
