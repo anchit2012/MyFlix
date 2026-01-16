@@ -207,6 +207,28 @@ body {
     transform: scale(1.1); /* Slightly bigger zoom so it pops */
 }
 
+/* =========================================
+   5. MOBILE ADJUSTMENTS
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* Force Row 1 (Trending) to be big on phone */
+    .row-poster {
+        height: 250px !important; 
+        margin-right: 10px;
+    }
+
+    /* Force Row 2 (Favorites) to be smaller on phone */
+    .row-posterLarge {
+        height: 180px !important; 
+    }
+    
+    /* Optional: Adjust text size so headers fit better */
+    h2 {
+        font-size: 1.2rem;
+    }
+}
+
 /* 5. FOOTER */
 .footer {
     padding: 20px;
