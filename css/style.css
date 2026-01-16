@@ -158,7 +158,7 @@ body {
 }
 
 /* =========================================
-   4. ROWS & POSTERS (Trending Big / Favorites Small)
+   4. ROWS & POSTERS (2:3 Ratio)
    ========================================= */
 
 .row {
@@ -177,12 +177,13 @@ body {
     display: none;
 }
 
-/* 1. ROW 1: TRENDING (The Standard Class)
-   We make this one BIG per your request.
-*/
+/* 1. ROW 1: TRENDING (Standard Class) */
 .row-poster {
-    aspect-ratio: 2 / 3; /* Keep the 9:16 Vertical Story look */
-    height: 300px;        /* Big and Bold */
+    /* FORCE 2:3 ASPECT RATIO */
+    aspect-ratio: 2 / 3;
+    
+    /* YOUR REQUESTED SIZE: 300px */
+    height: 300px;
     width: auto;
     
     object-fit: cover;
@@ -194,9 +195,19 @@ body {
 
 .row-poster:hover {
     transform: scale(1.08);
-    opacity: 1;
 }
 
+/* 2. ROW 2: FAVORITES (The 'Large' Class) 
+   We override the height to be smaller as requested.
+*/
+.row-posterLarge {
+    /* YOUR REQUESTED SIZE: 220px */
+    height: 220px; 
+}
+
+.row-posterLarge:hover {
+    transform: scale(1.1);
+}
 /* 2. ROW 2: FAVORITES (The 'Large' Class)
    We are overriding this to be SMALLER now.
 */
